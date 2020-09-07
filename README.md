@@ -6,9 +6,9 @@
 
 To improve the security and also to minimize the license usage in a Okta org. Customers want to send a notification or Suspend or deactivate users in an Okta org if the user is not logged in for x number of days.
 
-This flow by default adds the user to a group in Okta if the user is not logged in for x number of days. You can change the logic based on your requirement.
+This flow by default adds the user to a Okta group, If the user is not logged in for 30 number of days. You can change the logic based on your requirement. Logic is in 04 flow. This flow is designed to run for active users in the org.
 
-This flow also handles rate limiting. This flow is triggered with a scheduled job everyday. Which runs between a specific time, Check the screenshot below. I have my job starts at 5 PM and ends 6 PM PST. It starts every 5 mins. 
+This flow handles rate limiting. Flow is triggered with a scheduled job everyday between specific time, Check the screenshot below. I have my job scheduled to run between 5 PM and 6 PM PST. It runs every 5 mins. 
 
 ![image](https://user-images.githubusercontent.com/14205843/92412898-8dd50d00-f102-11ea-9d49-16d46f9bf2be.png)
 
