@@ -15,7 +15,7 @@ This flow also handles rate limiting. This flow is triggered with a scheduled jo
 
 This flow is built with rate limiting support. Okta returns 200 users per page. This flow will process 49 pages and store the 50 th page information in the table. When the flow is restarted in 5 mins, It will start processing from the 50th page.
 
-Below are some of the run time statistics based on the users in an org. These times will change frequently based on the time of execution and other factors. Okta also consistently improves our infrastructure to process these jobs in more efficient ways. Please test the flows run time in your org and update the scheduler accordingly.
+Below are some of the run time statistics based on the users in an org. These times will change frequently based on the time of execution and other factors. Okta also consistently improves our infrastructure to process these jobs in efficient ways. Please test these flows run times in your org and update the flow scheduler accordingly.
 
 ![image](https://user-images.githubusercontent.com/14205843/92412923-af35f900-f102-11ea-84bc-8372b4061edc.png)
 
