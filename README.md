@@ -10,25 +10,14 @@ This flow by default adds the user to a group in Okta if the user is not logged 
 
 This flow also handles rate limiting. This flow is triggered with a scheduled job everyday. Which runs between a specific time, Check the screenshot below. I have my job starts at 5 PM and ends 6 PM PST. It starts every 5 mins. 
 
-
-
-<p id="gdcalert1" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image1.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert2">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-
-![alt_text](images/image1.png "image_tooltip")
+![image](https://user-images.githubusercontent.com/14205843/92412898-8dd50d00-f102-11ea-9d49-16d46f9bf2be.png)
 
 
 This flow is built with rate limiting support. Okta returns 200 users per page. This flow will process 49 pages and store the 50 th page information in the table. When the flow is restarted in 5 mins, It will start processing from the 50th page.
 
 Below are some of the run time statistics based on the users in an org. These times will change frequently based on the time of execution and other factors. Okta also consistently improves our infrastructure to process these jobs in more efficient ways. Please test the flows run time in your org and update the scheduler accordingly.
 
-
-
-<p id="gdcalert2" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image2.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert3">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-
-![alt_text](images/image2.png "image_tooltip")
-
+![image](https://user-images.githubusercontent.com/14205843/92412923-af35f900-f102-11ea-84bc-8372b4061edc.png)
 
 
 ### 
@@ -46,38 +35,18 @@ Before you get started, you will need:
 
 *   Open the Schedule-Trigger-01 and click on the time icon in the first card to alter your schedule.
 
-    
-
-<p id="gdcalert3" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image3.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert4">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-
-![alt_text](images/image3.png "image_tooltip")
+![image](https://user-images.githubusercontent.com/14205843/92412967-db517a00-f102-11ea-98f7-be7b7be37f51.png)
 
 
 *   Update the Okta connections in 03 and 04 flows. Flow numbers can be found at the end of each flow. This is the order the flow executes.
 *   Open the “process all users” flow and update the days you want to go back for validating the last Login. If you want to validate users that are not logged in for 10 days. Then enter 10. By default the value is set as 30 days.
 
-
-
-<p id="gdcalert4" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image4.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert5">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-
-![alt_text](images/image4.png "image_tooltip")
-
-
+![image](https://user-images.githubusercontent.com/14205843/92413011-089e2800-f103-11ea-996b-229fe1be521f.png)
 
 
 *   Go to Okta and click on the group you created. Copy the groupID at the end of the URL.
 
-
-
-<p id="gdcalert5" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image5.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert6">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-
-![alt_text](images/image5.png "image_tooltip")
-
-
-
+![image](https://user-images.githubusercontent.com/14205843/92413044-2a97aa80-f103-11ea-93f2-4366865d1aa5.png)
 
 *   Open the “LastLoginValidation-04” flow and update the groupID in the Add user to group card.
 
@@ -87,14 +56,6 @@ Before you get started, you will need:
 *   Test the flow manually. If everything worked well, It should add the lastLoginnextRow,time in the table. 
 *   Open the NextRow table from the tables section.
 
-
-
-<p id="gdcalert6" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image6.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert7">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-
-![alt_text](images/image6.png "image_tooltip")
-
-
-
+![image](https://user-images.githubusercontent.com/14205843/92413091-54e96800-f103-11ea-8604-7ba40a43afda.png)
 
 *   Check the flow history tab for errors and troubleshooting.
