@@ -6,18 +6,17 @@
 
 To improve the security and also to minimize the license usage in a Okta org. Customers want to send a notification or Suspend or deactivate users in an Okta org if the user is not logged in for x number of days.
 
-This flow by default adds the user to a Okta group, If the user is not logged in for 30 number of days. You can change the logic based on your requirement. Logic is in 04 flow. This flow is designed to run for active users in the org.
+This flow by default adds the user to a workflow table, If the user is not logged in for 30 number of days. You can change the logic based on your requirement. Logic is in 0.1.4 flow. This flow is designed to run for active users in the org.
 
-This flow handles rate limiting. Flow is triggered with a scheduled job everyday between specific time, Check the screenshot below. I have my job scheduled to run between 5 PM and 6 PM PST. It runs every 5 mins. 
+This flow handles rate limiting, pagination. Flow is triggered with a scheduled job everyday between specific time, Check the screenshot below. I have my job scheduled to run at 8 PM PST. You can change this based on your requirement.
 
-![image](https://user-images.githubusercontent.com/14205843/92412898-8dd50d00-f102-11ea-9d49-16d46f9bf2be.png)
+![image](https://user-images.githubusercontent.com/14205843/94765551-0c1e7b00-0360-11eb-9a3f-f4779b3b41c0.png)
 
+This flow needs to be configured to run repeteadly for x number of times based on the number of Active users in the Org.  
 
-This flow is built with rate limiting support. Okta returns 200 users per page. This flow will process 49 pages and store the 50 th page information in the table. When the flow is restarted in 5 mins, It will start processing from the 50th page.
+This flow is tested with below run times.
 
-Below are some of the run time statistics based on the users in an org. These times will change frequently based on the time of execution and other factors. Okta also consistently improves our infrastructure to process these jobs in efficient ways. Please test these flows run times in your org and update the flow scheduler accordingly.
-
-![image](https://user-images.githubusercontent.com/14205843/92412923-af35f900-f102-11ea-84bc-8372b4061edc.png)
+100000 users can be processed at 2 Hours. You should use this flow only if your org has less than 200,000 users. Anything more will take more execution time. Also execution times varies based on the time of execution and tenants.
 
 
 ### 
@@ -26,36 +25,37 @@ Below are some of the run time statistics based on the users in an org. These ti
 Before you get started, you will need:
 
 
-
 *   Access to an Okta tenant with Okta Workflows enabled for your org
-*   Setup a group in Okta for lastLoginreport.
+*   Find the number of Active users in the Okta instance under Directory - People
 
 ### 
 **Setup Steps**
 
-*   Open the Schedule-Trigger-01 and click on the time icon in the first card to alter your schedule.
+*   Open the 0. master_flow and click on the time icon in the first card to alter your schedule.
 
-![image](https://user-images.githubusercontent.com/14205843/92412967-db517a00-f102-11ea-98f7-be7b7be37f51.png)
+![image](https://user-images.githubusercontent.com/14205843/94767369-04aba180-0361-11eb-839d-249be2882e1f.png)
 
+*   Open the 0. master_flow and update the number of days you want to go back for validate the lastLogin. I use current date - 30 days.
 
-*   Update the Okta connections in 03 and 04 flows. Flow numbers can be found at the end of each flow. This is the order the flow executes.
-*   Open the “process all users” flow and update the days you want to go back for validating the last Login. If you want to validate users that are not logged in for 10 days. Then enter 10. By default the value is set as 30 days.
+![image](https://user-images.githubusercontent.com/14205843/94767497-5fdd9400-0361-11eb-82b8-9346200462bc.png)
+
+*   Now update the Count in the last card. This count is created based on number of active users in the org. Okta will process 200 users per page. So if you have 100000 Active users. You can divide 100000/200. 500 pages has to be processed. So update the count based on your org active user count. This can be set to a lower number like as low as 1, So to test you can just process one single 200 users batch.
+
+![image](https://user-images.githubusercontent.com/14205843/94767605-b519a580-0361-11eb-9fa8-808905abe163.png)
+
+*   Open the 0.1 flow and update the Okta org connection
 
 ![image](https://user-images.githubusercontent.com/14205843/92413011-089e2800-f103-11ea-996b-229fe1be521f.png)
 
 
-*   Go to Okta and click on the group you created. Copy the groupID at the end of the URL.
+*   Open the 0.1.4 flow if you want to change logic for the user that matches the condition. For example if you want to add them to a Okta group or send a email, You can add that here.
 
-![image](https://user-images.githubusercontent.com/14205843/92413044-2a97aa80-f103-11ea-93f2-4366865d1aa5.png)
-
-*   Open the “LastLoginValidation-04” flow and update the groupID in the Add user to group card.
 
 ### 
 **Testing this Flow**
 
-*   Test the flow manually. If everything worked well, It should add the lastLoginnextRow,time in the table. 
-*   Open the NextRow table from the tables section.
+*   Test the flow manually. If everything worked well, you should be able to see the inactivityReport table updated with users.
 
-![image](https://user-images.githubusercontent.com/14205843/92413091-54e96800-f103-11ea-8604-7ba40a43afda.png)
+![image](https://user-images.githubusercontent.com/14205843/94768438-4f7ae880-0364-11eb-9e18-5a3e1f03fb55.png)
 
 *   Check the flow history tab for errors and troubleshooting.
