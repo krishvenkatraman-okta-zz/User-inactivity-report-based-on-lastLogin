@@ -35,11 +35,11 @@ Before you get started, you will need:
 
 ![image](https://user-images.githubusercontent.com/14205843/94767369-04aba180-0361-11eb-839d-249be2882e1f.png)
 
-*   Open the 0. master_flow and update the number of days you want to go back for validate the lastLogin. I use current date - 30 days.
+*   Inside the 0. master_flow and update the number of days you want to go back to validate the lastLogin. I use current date - 30 days. You can change the 30 days based on your company requirement.
 
 ![image](https://user-images.githubusercontent.com/14205843/94767497-5fdd9400-0361-11eb-82b8-9346200462bc.png)
 
-*   Now update the Count in the last card. This count is created based on number of active users in the org. Okta will process 200 users per page. So if you have 100000 Active users. You can divide 100000/200. 500 pages has to be processed. So update the count based on your org active user count. This can be set to a lower number like as low as 1, So to test you can just process one single 200 users batch.
+*   Inside the 0. master_flow update the count in the last card. This is the count how many times the child flow will be called. Okta processess 200 users per page. So if you have 100000 Active users. You can divide 100000/200. 500 pages needs to be processed. So update the count based on your org active user count. This can be set to a as low as 1, if you want to test your flow.
 
 ![image](https://user-images.githubusercontent.com/14205843/94767605-b519a580-0361-11eb-9fa8-808905abe163.png)
 
@@ -47,15 +47,16 @@ Before you get started, you will need:
 
 ![image](https://user-images.githubusercontent.com/14205843/92413011-089e2800-f103-11ea-996b-229fe1be521f.png)
 
-
 *   Open the 0.1.4 flow if you want to change logic for the user that matches the condition. For example if you want to add them to a Okta group or send a email, You can add that here.
-
 
 ### 
 **Testing this Flow**
 
-*   Test the flow manually. If everything worked well, you should be able to see the inactivityReport table updated with users.
+*   Test the flow manually. open the 0. master_flow and click test icon in top. If everything worked well, you should be able to see the inactivityReport table updated with users.
 
 ![image](https://user-images.githubusercontent.com/14205843/94768438-4f7ae880-0364-11eb-9e18-5a3e1f03fb55.png)
 
 *   Check the flow history tab for errors and troubleshooting.
+
+![image](https://user-images.githubusercontent.com/14205843/94768817-535b3a80-0365-11eb-8bf1-a523a0aa4e90.png)
+
